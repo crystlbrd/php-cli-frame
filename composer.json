@@ -1,0 +1,17 @@
+{
+  "name": "crystlbrd/php-cli-frame",
+  "description": "OOP based framwork for PHP CLI scripts",
+  "minimum-stability": "dev",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Emanuel Bitkov",
+      "email": "crystlbrd@bitkov.de"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "crystlbrd\\PHPCLIFrame\\": "src/"
+    }
+  }
+}
