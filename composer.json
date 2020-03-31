@@ -13,5 +13,9 @@
     "psr-4": {
       "crystlbrd\\PHPCLIFrame\\": "src/"
     }
+  },
+  "require": {
+    "php": ">=7.1",
+    "crystlbrd/values": "v0.1.0"
   }
 }

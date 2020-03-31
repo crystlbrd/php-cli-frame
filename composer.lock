@@ -1,0 +1,60 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "5dc5c8f22da684c2376ab2d561b6fe99",
+    "packages": [
+        {
+            "name": "crystlbrd/values",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/crystlbrd/Values.git",
+                "reference": "800afe13076da73b53d1377a0d53fb2ce2e14b84"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/crystlbrd/Values/zipball/800afe13076da73b53d1377a0d53fb2ce2e14b84",
+                "reference": "800afe13076da73b53d1377a0d53fb2ce2e14b84",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "9.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "crystlbrd\\Values\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Emanuel Bitkov",
+                    "email": "crystlbrd@bitkov.de"
+                }
+            ],
+            "description": "A PHP library of functions for generating and manipulating values.",
+            "time": "2020-02-28T18:02:24+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.0"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
+}
