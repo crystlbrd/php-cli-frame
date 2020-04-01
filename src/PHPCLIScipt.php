@@ -76,6 +76,10 @@ class PHPCLIScipt
         $this->printHeader();
     }
 
+    public function __destruct()
+    {
+        $this->printEndline();
+    }
 
     /// ENVIRONMENT HANDLING
 
