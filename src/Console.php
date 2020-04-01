@@ -70,7 +70,7 @@ class Console
                     break;
                 case 'center':
                     $ws = str_repeat(' ', $l / 2);
-                    return $ws . $text . $ws;
+                    return $ws . $text . $ws . ($l % 2 == 1 ? ' ' : '');
                     break;
             }
         } else {

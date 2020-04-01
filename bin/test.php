@@ -21,6 +21,9 @@ class TestScript extends crystlbrd\PHPCLIFrame\PHPCLIScipt
         $this->printLine('I am right!', ['align' => 'right']);
         $this->printLine('And I am centered!', ['align' => 'center']);
 
+        $this->printLine('I am uneven', ['align' => 'center', 'background' => 'cyan']);
+        $this->printLine('I am even!', ['align' => 'center', 'background' => 'cyan']);
+
         $this->printLine('Printing a line, which is way longer than the actuall console, so it is basically breaking the design completely!');
         $this->printLine('Printing a line, which is way longer than the actuall console, so it is basically breaking the design completely!', [
             'align' => 'right'
