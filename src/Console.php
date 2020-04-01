@@ -46,7 +46,7 @@ class Console
         'cyan' => '0;36',
         'light_cyan' => '1;36',
         'light_grey' => '0;37',
-        'white' => '0;37'
+        'white' => '1;37'
     ];
 
     public function __construct(int $ConsoleWidth)
@@ -73,7 +73,7 @@ class Console
         }
     }
 
-    public function printException(Exception $e): void
+    public function printException(\Exception $e): void
     {
         # TODO
         $this->println($e->getMessage(), [
@@ -96,13 +96,15 @@ class Console
             'channel' => STDOUT,                // Output channel
         ], $options);
 
-        if ($o['color']) $this->setTextColor($o['color']);
-        if ($o['mode']) $this->setTextMode($o['mode']);
-        if ($o['background']) $this->setBackgroundColor($o['background']);
+        if (!empty($o['color'])) $this->setTextColor($o['color']);
+        // TODO if ($o['mode']) $this->setTextMode($o['mode']);
+        if (!empty($o['background'])) $this->setBackgroundColor($o['background']);
 
         $text = $this->alignText($msg, $o['align']);
 
         fwrite($o['channel'], $text);
+
+        $this->resetColors();
         $this->printLineBreak($o['channel']);
     }
 

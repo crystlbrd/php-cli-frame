@@ -122,27 +122,65 @@ class PHPCLIScipt
     protected function printEmptyLine()
     {
         $this->Environment->printLineBreak();
-        $this->Environment->printLineBreak();
     }
 
     protected function printHeader(): void
     {
-        // set up colors
-        $this->Environment->setTextColor('light_grey');
-        $this->Environment->setTextMode('lighter');
-        $this->Environment->setBackgroundColor('cyan');
-
         // opening line
-        $this->printLine(date('d-m-Y, H:i'));
+        $this->printLine(date('d-m-Y, H:i'), ['color' => 'light_grey', 'background' => 'cyan']);
+
+        // script name
         if ($this->ScriptName != null) {
-            $this->printLine($this->ScriptName, ['align' => 'center']);
+            $this->printLine($this->ScriptName, ['align' => 'center', 'color' => 'white', 'background' => 'cyan']);
         }
 
+        // script version
         if ($this->SciptVersion) {
-            $this->printLine($this->SciptVersion, ['align' => 'right']);
+            $this->printLine($this->SciptVersion, ['align' => 'right', 'color' => 'light_grey', 'background' => 'cyan']);
         }
+
+        $this->printEmptyLine();
+    }
+
+
+    /// Default Log Methods
+
+    protected function logDebug(string $msg): void
+    {
+        $this->printLine($msg, [
+            'color' => 'light_grey'
+        ]);
 
         $this->Environment->resetColors();
-        $this->printEmptyLine();
+    }
+
+    protected function logInfo(string $msg): void
+    {
+        $this->printLine($msg);
+    }
+
+    protected function logWarning(string $msg): void
+    {
+        $this->printLine($msg, [
+            'color' => 'black',
+            'background' => 'yellow'
+        ]);
+
+        $this->Environment->resetColors();
+    }
+
+    protected function logError(string $msg): void
+    {
+        $this->printLine($msg, [
+            'color' => 'white',
+            'background' => 'red'
+        ]);
+
+        $this->Environment->resetColors();
+    }
+
+    protected function logException(\Exception $e): void
+    {
+        $this->Environment->printException($e);
     }
 }
