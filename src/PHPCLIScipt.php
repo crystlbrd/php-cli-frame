@@ -11,6 +11,16 @@ class PHPCLIScipt
      */
     protected $Environment;
 
+    /**
+     * @var int Time the script started
+     */
+    protected $TimerStart = 0;
+
+    /**
+     * @var int Time the script stopped
+     */
+    protected $TimerEnd = 0;
+
 
     /// STYLE
 
@@ -18,16 +28,6 @@ class PHPCLIScipt
      * @var int available characters in a line
      */
     protected $ConsoleWidth = 50;
-
-    /**
-     * @var string background color
-     */
-    protected $BackgroundColor = 'default';
-
-    /**
-     * @var string text color
-     */
-    protected $FontColor = 'default';
 
 
     /// SCRIPT PROPERTIES
@@ -65,6 +65,9 @@ class PHPCLIScipt
         if (!$this->validateEnvironment()) {
             throw new Exception('This script is intended to run in the PHP CLI!');
         }
+
+        // start internal timer
+        $this->startTimer();
 
         // determine the current CLI environment
         $this->Environment = $this->getEnvironment();
@@ -142,6 +145,16 @@ class PHPCLIScipt
         $this->printEmptyLine();
     }
 
+    protected function printEndline()
+    {
+        $this->stopTimer();
+        $this->printEmptyLine();
+        $this->printLine('script ended after ' . round($this->getFinalTime(), 3) . 's', [
+            'color' => 'white',
+            'background' => 'cyan'
+        ]);
+    }
+
 
     /// Default Log Methods
 
@@ -182,5 +195,25 @@ class PHPCLIScipt
     protected function logException(\Exception $e): void
     {
         $this->Environment->printException($e);
+    }
+
+    protected function startTimer(): void
+    {
+        $this->TimerStart = microtime(true);
+    }
+
+    protected function stopTimer(): void
+    {
+        $this->TimerEnd = microtime(true);
+    }
+
+    protected function getCurrentTime(): float
+    {
+        return microtime(true) - $this->TimerStart;
+    }
+
+    protected function getFinalTime(): float
+    {
+        return $this->TimerEnd - $this->TimerStart;
     }
 }
