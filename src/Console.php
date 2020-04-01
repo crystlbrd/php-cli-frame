@@ -56,20 +56,25 @@ class Console
 
     public function alignText(string $text, string $alignment): string
     {
-        switch ($alignment) {
-            case 'left':
-            default:
-                $ws = str_repeat(' ', $this->ConsoleWidth - strlen($text));
-                return $text . $ws;
-                break;
-            case 'right':
-                $ws = str_repeat(' ', $this->ConsoleWidth - strlen($text));
-                return $ws . $text;
-                break;
-            case 'center':
-                $ws = str_repeat(' ', ($this->ConsoleWidth - strlen($text)) / 2);
-                return $ws . $text . $ws;
-                break;
+        $l = ($this->ConsoleWidth - strlen($text));
+        if ($l >= 0) {
+            switch ($alignment) {
+                case 'left':
+                default:
+                    $ws = str_repeat(' ', $l);
+                    return $text . $ws;
+                    break;
+                case 'right':
+                    $ws = str_repeat(' ', $l);
+                    return $ws . $text;
+                    break;
+                case 'center':
+                    $ws = str_repeat(' ', $l / 2);
+                    return $ws . $text . $ws;
+                    break;
+            }
+        } else {
+            return $text;
         }
     }
 
