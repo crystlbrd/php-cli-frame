@@ -113,6 +113,30 @@ class Console
         $this->printLineBreak($o['channel']);
     }
 
+    /**
+     * Prints a text in multiple lines
+     * @param string $text
+     * @param array $options
+     */
+    public function printmln(string $text, array $options): void
+    {
+        $e = explode(' ', $text);
+
+        $seg = '';
+        $text = '';
+        foreach ($e as $w) {
+            if (strlen($seg . ' ' . $w) > $this->ConsoleWidth) {
+                $text .= PHP_EOL;
+                $seg = '';
+            }
+
+            $seg .= ' ' . $w;
+            $text .= ($text ? ' ' : '') . $w;
+        }
+
+        $this->println($text, $options);
+    }
+
     public function printLineBreak($channel = STDOUT): void
     {
         fwrite($channel, PHP_EOL);

@@ -116,6 +116,11 @@ class PHPCLIScipt
 
     /// PRINTING
 
+    protected function log(string $msg, array $options = []): void
+    {
+        $this->Environment->printmln($msg, $options);
+    }
+
     /**
      * Prints a text to the console
      * @param string $msg
@@ -164,7 +169,7 @@ class PHPCLIScipt
 
     protected function logDebug(string $msg): void
     {
-        $this->printLine($msg, [
+        $this->log($msg, [
             'color' => 'light_grey'
         ]);
 
@@ -173,12 +178,12 @@ class PHPCLIScipt
 
     protected function logInfo(string $msg): void
     {
-        $this->printLine($msg);
+        $this->log($msg);
     }
 
     protected function logWarning(string $msg): void
     {
-        $this->printLine($msg, [
+        $this->log($msg, [
             'color' => 'black',
             'background' => 'yellow'
         ]);
@@ -188,7 +193,7 @@ class PHPCLIScipt
 
     protected function logError(string $msg): void
     {
-        $this->printLine($msg, [
+        $this->log($msg, [
             'color' => 'white',
             'background' => 'red'
         ]);

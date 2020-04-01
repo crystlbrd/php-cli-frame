@@ -29,6 +29,8 @@ class TestScript extends crystlbrd\PHPCLIFrame\PHPCLIScipt
             'align' => 'center'
         ]);
 
+        $this->log('Printing a line, which is way longer than the actuall console, so it is basically breaking the design completely, but now it is printed in multiple lines!');
+
         $this->logException(new Exception('This is an exception!', 0, new Exception('And I\'m a traced exception!')));
     }
 }
