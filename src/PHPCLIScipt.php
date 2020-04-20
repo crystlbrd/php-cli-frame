@@ -40,7 +40,7 @@ class PHPCLIScipt
     /**
      * @var string the script version
      */
-    protected $SciptVersion;
+    protected $ScriptVersion;
 
     /**
      * @var array the script authors
@@ -147,8 +147,8 @@ class PHPCLIScipt
         }
 
         // script version
-        if ($this->SciptVersion) {
-            $this->printLine($this->SciptVersion, ['align' => 'right', 'color' => 'light_grey', 'background' => 'cyan']);
+        if ($this->ScriptVersion) {
+            $this->printLine($this->ScriptVersion, ['align' => 'right', 'color' => 'light_grey', 'background' => 'cyan']);
         }
 
         $this->printEmptyLine();
