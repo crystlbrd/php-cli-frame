@@ -21,6 +21,11 @@ class PHPCLIScipt
      */
     protected $TimerEnd = 0;
 
+    /**
+     * @var array Logs
+     */
+    protected $Logs = [];
+
 
     /// STYLE
 
@@ -53,6 +58,14 @@ class PHPCLIScipt
     protected $ScriptDescription;
 
 
+    /// OPTIONS
+
+    /**
+     * @var string|bool path, relative to script file, where to save log files. false to disable logging
+     */
+    protected $LogPath = 'logs/';
+
+
     /// METHODS
 
     /**
@@ -79,6 +92,10 @@ class PHPCLIScipt
     public function __destruct()
     {
         $this->printEndline();
+
+        if ($this->LogPath) {
+            $this->exportLogsToFile($this->LogPath . date('Y-m-d-H-i') . '.log');
+        }
     }
 
     /// ENVIRONMENT HANDLING
@@ -119,6 +136,7 @@ class PHPCLIScipt
     protected function log(string $msg, array $options = []): void
     {
         $this->Environment->printmln($msg, $options);
+        $this->Logs[] = '(' . gmdate('D M d H:i:s Y') . ') : ' . $msg;
     }
 
     /**
@@ -224,5 +242,26 @@ class PHPCLIScipt
     protected function getFinalTime(): float
     {
         return $this->TimerEnd - $this->TimerStart;
+    }
+
+    protected function exportLogsToFile(string $path): void
+    {
+        // Create dir
+        $dir = dirname($path);
+        if (!is_dir($dir)) {
+            mkdir($dir, 0755, true);
+        }
+
+        // open file
+        $f = fopen($path, 'w');
+
+        // write logs
+        if ($f) {
+            foreach ($this->Logs as $log) {
+                fwrite($f, $log . PHP_EOL);
+            }
+        } else {
+            throw new Exception('Failed to open log (' . $path . ') file!');
+        }
     }
 }
