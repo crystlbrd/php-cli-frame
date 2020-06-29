@@ -4,3 +4,6 @@ vendor/
 
 ### JetBrains ###
 .idea/
+
+### Temporary Files ###
+/logs/
