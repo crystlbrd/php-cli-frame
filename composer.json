@@ -16,7 +16,7 @@
   },
   "require": {
     "php": ">=7.1",
-    "crystlbrd/values": "dev-develop",
+    "crystlbrd/values": "^0.1",
     "nategood/commando": "0.4.0"
   }
 }
